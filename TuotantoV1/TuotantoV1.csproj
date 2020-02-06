@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AsiakasController.cs" />
     <Compile Include="Controllers\AsiakastapahtumatController.cs" />
     <Compile Include="Controllers\EtusivuController.cs" />
     <Compile Include="Models\Asiakasluokittelu.cs">
@@ -226,6 +227,11 @@
     <Content Include="Views\Etusivu\Details.cshtml" />
     <Content Include="Views\Etusivu\Edit.cshtml" />
     <Content Include="Views\Etusivu\Index.cshtml" />
+    <Content Include="Views\Asiakas\Create.cshtml" />
+    <Content Include="Views\Asiakas\Delete.cshtml" />
+    <Content Include="Views\Asiakas\Details.cshtml" />
+    <Content Include="Views\Asiakas\Edit.cshtml" />
+    <Content Include="Views\Asiakas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
