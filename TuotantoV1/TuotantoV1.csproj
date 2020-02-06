@@ -128,7 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AsiakkaanperustiedotController.cs" />
+    <Compile Include="Controllers\AsiakastapahtumatController.cs" />
     <Compile Include="Models\Asiakasluokittelu.cs">
       <DependentUpon>SenioritTuotanto.tt</DependentUpon>
     </Compile>
@@ -215,11 +215,11 @@
     <Content Include="Models\SenioritTuotanto.edmx.diagram">
       <DependentUpon>SenioritTuotanto.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Asiakkaanperustiedot\Create.cshtml" />
-    <Content Include="Views\Asiakkaanperustiedot\Delete.cshtml" />
-    <Content Include="Views\Asiakkaanperustiedot\Details.cshtml" />
-    <Content Include="Views\Asiakkaanperustiedot\Edit.cshtml" />
-    <Content Include="Views\Asiakkaanperustiedot\Index.cshtml" />
+    <Content Include="Views\Asiakastapahtumat\Create.cshtml" />
+    <Content Include="Views\Asiakastapahtumat\Delete.cshtml" />
+    <Content Include="Views\Asiakastapahtumat\Details.cshtml" />
+    <Content Include="Views\Asiakastapahtumat\Edit.cshtml" />
+    <Content Include="Views\Asiakastapahtumat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
