@@ -1,0 +1,58 @@
+﻿@model TuotantoV1.Models.Asiakastapahtumat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Asiakastapahtumat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Päivämäärä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Päivämäärä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yhteydenotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yhteydenotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kuvaus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kuvaus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratkaisu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ratkaisu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asiakkaanperustiedot.Etunimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tapahtumaid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
