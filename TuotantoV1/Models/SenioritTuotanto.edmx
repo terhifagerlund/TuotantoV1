@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tuotantoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asiakasluokittelu">
+          <Key>
+            <PropertyRef Name="Luokitteluid" />
+          </Key>
+          <Property Name="Luokitteluid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Asiakasnumero" Type="int" Nullable="false" />
+          <Property Name="Eläkeläisalennus" Type="bit" />
+          <Property Name="Tv" Type="bit" />
+          <Property Name="Pöytäkone" Type="bit" />
+          <Property Name="Kannettava" Type="bit" />
+          <Property Name="Matkapuhelin" Type="bit" />
+          <Property Name="Tabletti" Type="bit" />
+          <Property Name="Mokkula" Type="bit" />
+          <Property Name="Wlan" Type="bit" />
+        </EntityType>
+        <EntityType Name="Asiakastapahtumat">
+          <Key>
+            <PropertyRef Name="Tapahtumaid" />
+          </Key>
+          <Property Name="Tapahtumaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Asiakasnumero" Type="int" Nullable="false" />
+          <Property Name="Päivämäärä" Type="date" Nullable="false" />
+          <Property Name="Yhteydenotto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kuvaus" Type="nvarchar(max)" />
+          <Property Name="Ratkaisu" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asiakkaanperustiedot">
+          <Key>
+            <PropertyRef Name="Asiakasnumero" />
+          </Key>
+          <Property Name="Asiakasnumero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sukunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Osoite" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Postinumero" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Postitoimipaikka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Puhelin" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sähköposti" Type="nvarchar" MaxLength="50" />
+          <Property Name="Laskutusnimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Laskutusosoite" Type="nvarchar" MaxLength="50" />
+          <Property Name="Laskutuspostinumero" Type="nvarchar" MaxLength="5" />
+          <Property Name="Laskutuspostitoimipaikka" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="Loginid" />
+          </Key>
+          <Property Name="Loginid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Käyttäjätunnus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Salasana" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Asiakasluokittelu_Asiakkaanperustiedot">
+          <End Role="Asiakkaanperustiedot" Type="Self.Asiakkaanperustiedot" Multiplicity="1" />
+          <End Role="Asiakasluokittelu" Type="Self.Asiakasluokittelu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakkaanperustiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakasluokittelu">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asiakastapahtumat_Asiakkaanperustiedot">
+          <End Role="Asiakkaanperustiedot" Type="Self.Asiakkaanperustiedot" Multiplicity="1" />
+          <End Role="Asiakastapahtumat" Type="Self.Asiakastapahtumat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakkaanperustiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakastapahtumat">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tuotantoModelStoreContainer">
+          <EntitySet Name="Asiakasluokittelu" EntityType="Self.Asiakasluokittelu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asiakastapahtumat" EntityType="Self.Asiakastapahtumat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asiakkaanperustiedot" EntityType="Self.Asiakkaanperustiedot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asiakasluokittelu_Asiakkaanperustiedot" Association="Self.FK_Asiakasluokittelu_Asiakkaanperustiedot">
+            <End Role="Asiakkaanperustiedot" EntitySet="Asiakkaanperustiedot" />
+            <End Role="Asiakasluokittelu" EntitySet="Asiakasluokittelu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asiakastapahtumat_Asiakkaanperustiedot" Association="Self.FK_Asiakastapahtumat_Asiakkaanperustiedot">
+            <End Role="Asiakkaanperustiedot" EntitySet="Asiakkaanperustiedot" />
+            <End Role="Asiakastapahtumat" EntitySet="Asiakastapahtumat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tuotantoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asiakasluokittelu">
+          <Key>
+            <PropertyRef Name="Luokitteluid" />
+          </Key>
+          <Property Name="Luokitteluid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Asiakasnumero" Type="Int32" Nullable="false" />
+          <Property Name="Eläkeläisalennus" Type="Boolean" />
+          <Property Name="Tv" Type="Boolean" />
+          <Property Name="Pöytäkone" Type="Boolean" />
+          <Property Name="Kannettava" Type="Boolean" />
+          <Property Name="Matkapuhelin" Type="Boolean" />
+          <Property Name="Tabletti" Type="Boolean" />
+          <Property Name="Mokkula" Type="Boolean" />
+          <Property Name="Wlan" Type="Boolean" />
+          <NavigationProperty Name="Asiakkaanperustiedot" Relationship="Self.FK_Asiakasluokittelu_Asiakkaanperustiedot" FromRole="Asiakasluokittelu" ToRole="Asiakkaanperustiedot" />
+        </EntityType>
+        <EntityType Name="Asiakastapahtumat">
+          <Key>
+            <PropertyRef Name="Tapahtumaid" />
+          </Key>
+          <Property Name="Tapahtumaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Asiakasnumero" Type="Int32" Nullable="false" />
+          <Property Name="Päivämäärä" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Yhteydenotto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kuvaus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ratkaisu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Asiakkaanperustiedot" Relationship="Self.FK_Asiakastapahtumat_Asiakkaanperustiedot" FromRole="Asiakastapahtumat" ToRole="Asiakkaanperustiedot" />
+        </EntityType>
+        <EntityType Name="Asiakkaanperustiedot">
+          <Key>
+            <PropertyRef Name="Asiakasnumero" />
+          </Key>
+          <Property Name="Asiakasnumero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Osoite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postinumero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postitoimipaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puhelin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sähköposti" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Laskutusnimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Laskutusosoite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Laskutuspostinumero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Laskutuspostitoimipaikka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Asiakasluokittelu" Relationship="Self.FK_Asiakasluokittelu_Asiakkaanperustiedot" FromRole="Asiakkaanperustiedot" ToRole="Asiakasluokittelu" />
+          <NavigationProperty Name="Asiakastapahtumat" Relationship="Self.FK_Asiakastapahtumat_Asiakkaanperustiedot" FromRole="Asiakkaanperustiedot" ToRole="Asiakastapahtumat" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="Loginid" />
+          </Key>
+          <Property Name="Loginid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Käyttäjätunnus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salasana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Asiakasluokittelu_Asiakkaanperustiedot">
+          <End Role="Asiakkaanperustiedot" Type="Self.Asiakkaanperustiedot" Multiplicity="1" />
+          <End Role="Asiakasluokittelu" Type="Self.Asiakasluokittelu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakkaanperustiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakasluokittelu">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asiakastapahtumat_Asiakkaanperustiedot">
+          <End Role="Asiakkaanperustiedot" Type="Self.Asiakkaanperustiedot" Multiplicity="1" />
+          <End Role="Asiakastapahtumat" Type="Self.Asiakastapahtumat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiakkaanperustiedot">
+              <PropertyRef Name="Asiakasnumero" />
+            </Principal>
+            <Dependent Role="Asiakastapahtumat">
+              <PropertyRef Name="Asiakasnumero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tuotantoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asiakasluokittelu" EntityType="Self.Asiakasluokittelu" />
+          <EntitySet Name="Asiakastapahtumat" EntityType="Self.Asiakastapahtumat" />
+          <EntitySet Name="Asiakkaanperustiedot" EntityType="Self.Asiakkaanperustiedot" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" />
+          <AssociationSet Name="FK_Asiakasluokittelu_Asiakkaanperustiedot" Association="Self.FK_Asiakasluokittelu_Asiakkaanperustiedot">
+            <End Role="Asiakkaanperustiedot" EntitySet="Asiakkaanperustiedot" />
+            <End Role="Asiakasluokittelu" EntitySet="Asiakasluokittelu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asiakastapahtumat_Asiakkaanperustiedot" Association="Self.FK_Asiakastapahtumat_Asiakkaanperustiedot">
+            <End Role="Asiakkaanperustiedot" EntitySet="Asiakkaanperustiedot" />
+            <End Role="Asiakastapahtumat" EntitySet="Asiakastapahtumat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tuotantoModelStoreContainer" CdmEntityContainer="tuotantoEntities">
+          <EntitySetMapping Name="Asiakasluokittelu">
+            <EntityTypeMapping TypeName="tuotantoModel.Asiakasluokittelu">
+              <MappingFragment StoreEntitySet="Asiakasluokittelu">
+                <ScalarProperty Name="Luokitteluid" ColumnName="Luokitteluid" />
+                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
+                <ScalarProperty Name="Eläkeläisalennus" ColumnName="Eläkeläisalennus" />
+                <ScalarProperty Name="Tv" ColumnName="Tv" />
+                <ScalarProperty Name="Pöytäkone" ColumnName="Pöytäkone" />
+                <ScalarProperty Name="Kannettava" ColumnName="Kannettava" />
+                <ScalarProperty Name="Matkapuhelin" ColumnName="Matkapuhelin" />
+                <ScalarProperty Name="Tabletti" ColumnName="Tabletti" />
+                <ScalarProperty Name="Mokkula" ColumnName="Mokkula" />
+                <ScalarProperty Name="Wlan" ColumnName="Wlan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asiakastapahtumat">
+            <EntityTypeMapping TypeName="tuotantoModel.Asiakastapahtumat">
+              <MappingFragment StoreEntitySet="Asiakastapahtumat">
+                <ScalarProperty Name="Tapahtumaid" ColumnName="Tapahtumaid" />
+                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
+                <ScalarProperty Name="Päivämäärä" ColumnName="Päivämäärä" />
+                <ScalarProperty Name="Yhteydenotto" ColumnName="Yhteydenotto" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+                <ScalarProperty Name="Ratkaisu" ColumnName="Ratkaisu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asiakkaanperustiedot">
+            <EntityTypeMapping TypeName="tuotantoModel.Asiakkaanperustiedot">
+              <MappingFragment StoreEntitySet="Asiakkaanperustiedot">
+                <ScalarProperty Name="Asiakasnumero" ColumnName="Asiakasnumero" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
+                <ScalarProperty Name="Puhelin" ColumnName="Puhelin" />
+                <ScalarProperty Name="Sähköposti" ColumnName="Sähköposti" />
+                <ScalarProperty Name="Laskutusnimi" ColumnName="Laskutusnimi" />
+                <ScalarProperty Name="Laskutusosoite" ColumnName="Laskutusosoite" />
+                <ScalarProperty Name="Laskutuspostinumero" ColumnName="Laskutuspostinumero" />
+                <ScalarProperty Name="Laskutuspostitoimipaikka" ColumnName="Laskutuspostitoimipaikka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="tuotantoModel.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="Loginid" ColumnName="Loginid" />
+                <ScalarProperty Name="Käyttäjätunnus" ColumnName="Käyttäjätunnus" />
+                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
