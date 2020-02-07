@@ -129,8 +129,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AsiakasController.cs" />
+    <Compile Include="Controllers\AsiakasluokitteluController.cs" />
     <Compile Include="Controllers\AsiakastapahtumatController.cs" />
     <Compile Include="Controllers\EtusivuController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Models\Asiakasluokittelu.cs">
       <DependentUpon>SenioritTuotanto.tt</DependentUpon>
     </Compile>
@@ -232,6 +234,16 @@
     <Content Include="Views\Asiakas\Details.cshtml" />
     <Content Include="Views\Asiakas\Edit.cshtml" />
     <Content Include="Views\Asiakas\Index.cshtml" />
+    <Content Include="Views\Logins\Create.cshtml" />
+    <Content Include="Views\Logins\Delete.cshtml" />
+    <Content Include="Views\Logins\Details.cshtml" />
+    <Content Include="Views\Logins\Edit.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Create.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Delete.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Details.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Edit.cshtml" />
+    <Content Include="Views\Asiakasluokittelu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

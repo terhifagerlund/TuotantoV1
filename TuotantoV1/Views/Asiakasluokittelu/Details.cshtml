@@ -1,0 +1,90 @@
+﻿@model TuotantoV1.Models.Asiakasluokittelu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Asiakasluokittelu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Eläkeläisalennus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eläkeläisalennus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pöytäkone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pöytäkone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kannettava)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kannettava)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Matkapuhelin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matkapuhelin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tabletti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tabletti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mokkula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mokkula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wlan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wlan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asiakkaanperustiedot.Etunimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Luokitteluid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
