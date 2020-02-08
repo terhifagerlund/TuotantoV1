@@ -4,90 +4,108 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Etunimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sukunimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Osoite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postinumero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Puhelin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sähköposti)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Laskutusnimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Laskutusosoite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Laskutuspostinumero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Etunimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sukunimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Osoite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postinumero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Puhelin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sähköposti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Laskutusnimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Laskutusosoite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Laskutuspostinumero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Asiakasnumero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })
-        </td>
-    </tr>
+<h2>Etusivu</h2>
+<br>
+@using (Html.BeginForm())
+{
+    <p>
+        Etsi nimellä: @Html.TextBox("SearchString")
+        <input type="submit" value="Etsi"/>
+    </p>
 }
+<br>
+<br>
+<br>
+<p>
+    <button>@Html.ActionLink("Lisää uusi asiakas", "Create")</button>
+</p>
 
-</table>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Asiakasnumero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etunimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sukunimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Osoite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postinumero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postitoimipaikka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puhelin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sähköposti)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Laskutusnimi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Laskutusosoite)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Laskutuspostinumero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asiakasnumero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Etunimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sukunimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Osoite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postinumero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postitoimipaikka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Puhelin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sähköposti)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Laskutusnimi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Laskutusosoite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Laskutuspostinumero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
+                    </td>*@
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |*@
+                    <button>@Html.ActionLink("Asiakastiedot", "Index", "Asiakas")</button>
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })*@
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Lisää uusi asiakas</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Asiakkaanperustiedot</h4>
+        @*<h4>Asiakkaanperustiedot</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -70,6 +70,9 @@
                 @Html.ValidationMessageFor(model => model.Sähköposti, "", new { @class = "text-danger" })
             </div>
         </div>
+        <br>
+
+        <h4><b>Lisää mahdollinen poikkeava laskutustieto alle:</b>​</h4>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Laskutusnimi, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -105,14 +108,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Tallenna" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Takaisin", "Index")
 </div>
 
 @section Scripts {
