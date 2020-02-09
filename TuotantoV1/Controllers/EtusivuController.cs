@@ -15,11 +15,27 @@ namespace TuotantoV1.Controllers
         private tuotantoEntities db = new tuotantoEntities();
 
         // GET: Etusivu
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.Asiakkaanperustiedot.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var seniorit = from s in db.Asiakkaanperustiedot
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                seniorit = seniorit.Where(s => s.Sukunimi.Contains(searchString)
+                                       || s.Etunimi.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Sukunimi);
+                    break;
+                default:
+                    seniorit = seniorit.OrderBy(s => s.Sukunimi);
+                    break;
+            }
+            return View(seniorit.ToList());
         }
-
         // GET: Etusivu/Details/5
         public ActionResult Details(int? id)
         {
