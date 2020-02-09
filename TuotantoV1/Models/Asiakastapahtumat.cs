@@ -11,12 +11,16 @@ namespace TuotantoV1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Asiakastapahtumat
     {
         public int Tapahtumaid { get; set; }
         public int Asiakasnumero { get; set; }
-        public System.DateTime Päivämäärä { get; set; }
+        //public System.DateTime Päivämäärä { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> Päivämäärä { get; set; }
         public string Yhteydenotto { get; set; }
         public string Kuvaus { get; set; }
         public string Ratkaisu { get; set; }
