@@ -8,7 +8,7 @@
 
 
 <p>
-     @Html.ActionLink("Takaisin", "Index", "Etusivu")
+    @Html.ActionLink("Takaisin", "Index", "Etusivu")
 </p>
 <table class="table">
 
@@ -92,7 +92,7 @@
 
     <tr>
         <th>
-        <h4><b>Lisää mahdollinen poikkeava laskutustieto alle:</b></h4>
+            <h4><b>Lisää mahdollinen poikkeava laskutustieto alle:</b></h4>
         </th>
     </tr>
 
@@ -146,8 +146,9 @@
                 <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Asiakasnumero })</button> |
                 @*@Html.ActionLink("Details", "Details", new { id = item.Asiakasnumero }) |*@
                 <button>@Html.ActionLink("Poista", "Delete", new { id = item.Asiakasnumero })</button>
+                &nbsp; &nbsp; &nbsp; &nbsp;<button> @Html.ActionLink("Seuraava", "Index", "Asiakasluokittelu") </button>
             </td>
         </tr>
     }
 </table>
-
+ 
