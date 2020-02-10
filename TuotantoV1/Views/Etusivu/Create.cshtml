@@ -6,13 +6,16 @@
 
 <h2>Lisää uusi asiakas</h2>
 
+<p>
+    @Html.ActionLink("Takaisin", "Index")
+</p>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        @*<h4>Asiakkaanperustiedot</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -72,10 +75,10 @@
         </div>
         <br>
 
-        <h4><b>Lisää mahdollinen poikkeava laskutustieto alle:</b>​</h4>
+        <h4><b>Lisää poikkeava laskutustieto alle:</b>​</h4>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Laskutusnimi, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Nimi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Laskutusnimi, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Laskutusnimi, "", new { @class = "text-danger" })
@@ -83,7 +86,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Laskutusosoite, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Osoite, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Laskutusosoite, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Laskutusosoite, "", new { @class = "text-danger" })
@@ -91,7 +94,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Laskutuspostinumero, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Postinumero, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Laskutuspostinumero, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Laskutuspostinumero, "", new { @class = "text-danger" })
@@ -99,7 +102,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Laskutuspostitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Postitoimipaikka, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Laskutuspostitoimipaikka, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Laskutuspostitoimipaikka, "", new { @class = "text-danger" })
@@ -113,10 +116,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Takaisin", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
