@@ -1,114 +1,139 @@
-﻿@*@model TuotantoV1.Models.Asiakkaanperustiedot
+﻿@model TuotantoV1.Models.Asiakkaanperustiedot
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <h2>Asiakkaan perustiedot</h2>
+    <p>
+        @Html.ActionLink("Takaisin", "Index")
+    </p>
 
 <div>
-    <h4>Asiakkaan perustiedot</h4>
+    @*<h4>Asiakkaan perustiedot</h4>*@
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Asiakasnumero)
-        </dt>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Asiakasnumero)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Asiakasnumero)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Asiakasnumero)
+            </td>
+        </tr>
+        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Etunimi)
-        </dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Etunimi)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Etunimi)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Etunimi)
+            </td>
+        </tr>
+        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sukunimi)
-        </dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Sukunimi)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sukunimi)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Sukunimi)
+            </td>
+        </tr>
+        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Osoite)
-        </dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Osoite)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Osoite)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Osoite)
+            </td>
+        </tr>
+        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Postinumero)
-        </dt>
+            <th>
+                @Html.DisplayNameFor(model => model.Postinumero)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Postinumero)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Postinumero)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Postitoimipaikka)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Postitoimipaikka)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Postitoimipaikka)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Puhelin)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Postitoimipaikka)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Puhelin)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sähköposti)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Puhelin)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Sähköposti)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <h4><b>Poikkeava laskutustieto:</b></h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nimi)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Puhelin)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Laskutusnimi)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Osoite)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sähköposti)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.Laskutusosoite)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Postinumero)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sähköposti)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Laskutuspostinumero)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Postitoimipaikka)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Laskutusnimi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Laskutusnimi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Laskutusosoite)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Laskutusosoite)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Laskutuspostinumero)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Laskutuspostinumero)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Laskutuspostitoimipaikka)
-        </dd>
-
-    </dl>
+            <td>
+                @Html.DisplayFor(model => model.Laskutuspostitoimipaikka)
+            </td>
+        </tr>
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Muokkaa", "Edit", new { id = Model.Asiakasnumero }) |
-    @Html.ActionLink("Takaisin", "Index")
-</p>*@
+    <Button>@Html.ActionLink("Muokkaa", "Edit", new { id = Model.Asiakasnumero })</Button>
+    <Button>@Html.ActionLink("Poista", "Delete", new { id = Model.Asiakasnumero })</Button>
+     @Html.ActionLink("Seuraava", "Index", "Asiakasluokittelu")
+</p>

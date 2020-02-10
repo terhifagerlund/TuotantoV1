@@ -100,11 +100,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
                     </td>*@
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |*@
-                    <button>@Html.ActionLink("Asiakastiedot", "Index", "Asiakas")</button>
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })*@
-                </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |*@
+                @*<button>@Html.ActionLink("Asiakastiedot", "Index", "Asiakas")</button>*@
+                <button>@Html.ActionLink("Asiakastiedot", "Details", new { id = item.Asiakasnumero })</button>
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })*@
+            </td>
             </tr>
         }
 

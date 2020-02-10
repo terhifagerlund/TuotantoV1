@@ -144,7 +144,7 @@
         <tr>
             <td>
                 <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Asiakasnumero })</button> |
-                @*@Html.ActionLink("Details", "Details", new { id = item.Asiakasnumero }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.Asiakasnumero }) |
                 <button>@Html.ActionLink("Poista", "Delete", new { id = item.Asiakasnumero })</button>
                 &nbsp; &nbsp; &nbsp; &nbsp;<button> @Html.ActionLink("Seuraava", "Index", "Asiakasluokittelu") </button>
             </td>
