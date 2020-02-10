@@ -11,7 +11,8 @@ namespace TuotantoV1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Asiakkaanperustiedot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace TuotantoV1.Models
             this.Asiakasluokittelu = new HashSet<Asiakasluokittelu>();
             this.Asiakastapahtumat = new HashSet<Asiakastapahtumat>();
         }
-    
+
         public int Asiakasnumero { get; set; }
         public string Etunimi { get; set; }
         public string Sukunimi { get; set; }
@@ -38,6 +39,8 @@ namespace TuotantoV1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiakasluokittelu> Asiakasluokittelu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //[Display(Name = "Asiakastapahtumat")]
+        //[Required(ErrorMessage ="VIRHE")]
         public virtual ICollection<Asiakastapahtumat> Asiakastapahtumat { get; set; }
     }
 }
