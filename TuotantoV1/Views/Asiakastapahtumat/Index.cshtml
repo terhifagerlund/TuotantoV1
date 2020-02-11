@@ -6,8 +6,12 @@
 
 <h2>Asiakastapahtumat</h2>
 
+<div>
+    @Html.ActionLink("Takaisin", "Index", "Asiakasluokittelu")
+</div>
+<br />
 <p>
-    @Html.ActionLink("Lisää uusi asiakastapahtuma", "Create")
+    <button>@Html.ActionLink("Lisää uusi asiakastapahtuma", "Create")</button>
 </p>
 <table class="table">
     <tr>
@@ -48,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.Ratkaisu)
         </td>
         <td>
-            <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Tapahtumaid })</button> |
+            <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Tapahtumaid })</button> 
             @*@Html.ActionLink("Details", "Details", new { id=item.Tapahtumaid }) |*@
             <button>@Html.ActionLink("Poista", "Delete", new { id = item.Tapahtumaid })</button>
         </td>
@@ -58,6 +62,4 @@
 </table>
 
 
-<div>
-    @Html.ActionLink("Takaisin", "Index", "Asiakasluokittelu")
-</div>
+
