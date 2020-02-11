@@ -9,36 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Eläkeläisalennus</span>
-</div>
-<h4>Laitteet:</h4>
-
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Tv</span>
-</div>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Pöytäkone</span>
-</div>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Kannettava</span>
-</div>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Matkapuhelin</span>
-</div>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Tabletti</span>
-</div>
-
-<h4>Nettiyhteys:</h4>
-
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Mokkula</span>
-</div>
-<div class="styled-chekbox">
-    <input type="checkbox" checked class="icheck-box-flat"> <span class="checkbox-label">Wlan</span>
-</div>
-@*<table class="table">
+ 
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Eläkeläisalennus)
@@ -68,43 +40,45 @@
             @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
         </th>
         <th></th>
-    </tr>*@
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Eläkeläisalennus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pöytäkone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kannettava)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matkapuhelin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tabletti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mokkula)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wlan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Luokitteluid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Luokitteluid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Luokitteluid })
-        </td>
     </tr>
-}
+    
 
-@*</table>*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Eläkeläisalennus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pöytäkone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kannettava)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matkapuhelin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tabletti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mokkula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Luokitteluid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Luokitteluid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })
+            </td>
+        </tr>
+    }
+
+</table>
