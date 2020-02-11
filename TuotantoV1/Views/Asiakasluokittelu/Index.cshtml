@@ -7,11 +7,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Lisää uusi asiakasluokittelu", "Create")
 </p>
  
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Asiakasnumero)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Eläkeläisalennus)
         </th>
@@ -36,49 +39,46 @@
         <th>
             @Html.DisplayNameFor(model => model.Wlan)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
-        </th>
         <th></th>
     </tr>
     
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eläkeläisalennus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pöytäkone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kannettava)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Matkapuhelin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tabletti)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mokkula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wlan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Luokitteluid }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Luokitteluid }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Asiakasnumero)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Eläkeläisalennus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tv)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pöytäkone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kannettava)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Matkapuhelin)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tabletti)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mokkula)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Wlan)
+    </td>
+    <td>
+        @Html.ActionLink("Muokkaa", "Edit", new { id = item.Luokitteluid }) 
+        @*@Html.ActionLink("Details", "Details", new { id = item.Luokitteluid }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })*@
+    </td>
+</tr>
     }
 
 </table>
