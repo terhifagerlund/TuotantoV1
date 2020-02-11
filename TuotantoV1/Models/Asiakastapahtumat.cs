@@ -20,9 +20,12 @@ namespace TuotantoV1.Models
         //public System.DateTime Päivämäärä { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
+        [Required]
         public Nullable<System.DateTime> Päivämäärä { get; set; }
+        [Required]
         public string Yhteydenotto { get; set; }
         public string Kuvaus { get; set; }
+        [Required]
         public string Ratkaisu { get; set; }
     
         public virtual Asiakkaanperustiedot Asiakkaanperustiedot { get; set; }

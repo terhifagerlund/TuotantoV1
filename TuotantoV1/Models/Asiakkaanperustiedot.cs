@@ -23,11 +23,17 @@ namespace TuotantoV1.Models
         }
 
         public int Asiakasnumero { get; set; }
+        [Required]
         public string Etunimi { get; set; }
+        [Required]
         public string Sukunimi { get; set; }
+        [Required]
         public string Osoite { get; set; }
+        [Required]
         public string Postinumero { get; set; }
+        [Required]
         public string Postitoimipaikka { get; set; }
+        [Required]
         public string Puhelin { get; set; }
         public string Sähköposti { get; set; }
         public string Laskutusnimi { get; set; }
