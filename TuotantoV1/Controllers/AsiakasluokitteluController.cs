@@ -39,7 +39,7 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu/Create
         public ActionResult Create()
         {
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Etunimi");
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace TuotantoV1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Etunimi", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
@@ -73,7 +73,7 @@ namespace TuotantoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Etunimi", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
@@ -90,7 +90,7 @@ namespace TuotantoV1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Etunimi", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 

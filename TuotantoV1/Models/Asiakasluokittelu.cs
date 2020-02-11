@@ -11,20 +11,29 @@ namespace TuotantoV1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Asiakasluokittelu
     {
         public int Luokitteluid { get; set; }
         public int Asiakasnumero { get; set; }
-        public Nullable<bool> Eläkeläisalennus { get; set; }
-        public Nullable<bool> Tv { get; set; }
-        public Nullable<bool> Pöytäkone { get; set; }
-        public Nullable<bool> Kannettava { get; set; }
-        public Nullable<bool> Matkapuhelin { get; set; }
-        public Nullable<bool> Tabletti { get; set; }
-        public Nullable<bool> Mokkula { get; set; }
-        public Nullable<bool> Wlan { get; set; }
-    
+        public bool Eläkeläisalennus { get; set; } = false;
+        //public Nullable<bool> Eläkeläisalennus { get; set; }
+        public bool Tv { get; set; } = false;
+        //public Nullable<bool> Tv { get; set; }
+        public bool Pöytäkone { get; set; } = false;
+        //public Nullable<bool> Pöytäkone { get; set; }
+        public bool Kannettava { get; set; } = false;
+        //public Nullable<bool> Kannettava { get; set; }
+        public bool Matkapuhelin { get; set; } = false;
+        //public Nullable<bool> Matkapuhelin { get; set; }
+        public bool Tabletti { get; set; } = false;
+        //public Nullable<bool> Tabletti { get; set; }
+        public bool Mokkula { get; set; } = false;
+        //public Nullable<bool> Mokkula { get; set; }
+        public bool Wlan { get; set; } = false;
+        //public Nullable<bool> Wlan { get; set; }
+
         public virtual Asiakkaanperustiedot Asiakkaanperustiedot { get; set; }
     }
 }

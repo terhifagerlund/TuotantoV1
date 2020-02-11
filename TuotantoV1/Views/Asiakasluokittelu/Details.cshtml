@@ -4,10 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Asiakasluokittelu</h2>
+<p>
+    @Html.ActionLink("Takaisin", "Index")
+</p>
 
 <div>
-    <h4>Asiakasluokittelu</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,7 +19,11 @@
         <dd>
             @Html.DisplayFor(model => model.Eläkeläisalennus)
         </dd>
-
+        
+            <dd>
+                <h4><b>Valitse laitteet:</b></h4>
+            </dd>
+        
         <dt>
             @Html.DisplayNameFor(model => model.Tv)
         </dt>
@@ -57,7 +63,9 @@
         <dd>
             @Html.DisplayFor(model => model.Tabletti)
         </dd>
-
+        <dd>
+            <h4><b>Nettiyhteys:</b></h4>
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Mokkula)
         </dt>
@@ -84,7 +92,11 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Luokitteluid }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@*<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Tallenna muutokset" class="btn btn-default" />
+    </div>
+</div>*@
+    <p>
+        @Html.ActionLink("Seuraava", "Index", "Asiakastapahtumat") 
+    </p>
