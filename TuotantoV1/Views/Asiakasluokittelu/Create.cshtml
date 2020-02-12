@@ -6,7 +6,7 @@
 
 <h2>Lisää uusi asiakasluokittelu</h2>
 <p>
-    @Html.ActionLink("Takaisin", "Index")
+    @Html.ActionLink("Takaisin", "Create", "Etusivu")
 </p>
 
 
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Asiakkaanperustiedot.Asiakasnumero, "Asiakasnumero", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Asiakasnumero", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Asiakasnumero", null, htmlAttributes: new { @class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Asiakkaanperustiedot.Asiakasnumero, "", new { @class = "text-danger" })
             </div>
         </div>

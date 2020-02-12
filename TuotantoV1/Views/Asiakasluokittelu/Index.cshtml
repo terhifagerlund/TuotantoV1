@@ -4,16 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Asiakasluokittelu</h2>
+<p>
+    @Html.ActionLink("Takaisin", "Index", "Etusivu")
+</p>
 
 <p>
-    @Html.ActionLink("Lisää uusi asiakasluokittelu", "Create")
+    <button>@Html.ActionLink("Lisää uusi asiakasluokittelu", "Create")</button>
 </p>
  
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Asiakasnumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Sukunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Eläkeläisalennus)
@@ -50,6 +59,12 @@
         @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Asiakasnumero)
     </td>
     <td>
+        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Sukunimi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.Eläkeläisalennus)
     </td>
     <td>
@@ -74,9 +89,9 @@
         @Html.DisplayFor(modelItem => item.Wlan)
     </td>
     <td>
-        @Html.ActionLink("Muokkaa", "Edit", new { id = item.Luokitteluid }) 
+        <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Luokitteluid })</button>
         @*@Html.ActionLink("Details", "Details", new { id = item.Luokitteluid }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })*@
     </td>
 </tr>
     }

@@ -54,7 +54,7 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakasluokittelu.Add(asiakasluokittelu);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Asiakastapahtumat");
             }
 
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);

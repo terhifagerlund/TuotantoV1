@@ -68,7 +68,7 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakkaanperustiedot.Add(asiakkaanperustiedot);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Asiakasluokittelu");
             }
 
             return View(asiakkaanperustiedot);
