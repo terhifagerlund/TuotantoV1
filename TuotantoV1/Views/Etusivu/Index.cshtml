@@ -10,9 +10,18 @@
 {
     <p>
         Etsi nimellä: @Html.TextBox("SearchString")
-        <input type="submit" value="Etsi"/>
+        <input type="submit" value="Etsi" />
     </p>
 }
+
+<button type="button" class="btn btn-primary"onclick="myFunction()">Tulosta sivu</button>
+
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
+<br>
 <br>
 <br>
 <br>
@@ -20,93 +29,93 @@
     <button>@Html.ActionLink("Lisää uusi asiakas", "Create")</button>
 </p>
 
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Asiakasnumero)
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakasnumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sukunimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Osoite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postitoimipaikka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Puhelin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sähköposti)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Laskutusnimi)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Etunimi)
+                @Html.DisplayNameFor(model => model.Laskutusosoite)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sukunimi)
+                @Html.DisplayNameFor(model => model.Laskutuspostinumero)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Osoite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Postinumero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Postitoimipaikka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Puhelin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sähköposti)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Laskutusnimi)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutusosoite)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutuspostinumero)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
-                </th>*@
-            <th></th>
-        </tr>
+                @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
+            </th>*@
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Asiakasnumero)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakasnumero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etunimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sukunimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Osoite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postinumero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postitoimipaikka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puhelin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sähköposti)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Laskutusnimi)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Etunimi)
+                    @Html.DisplayFor(modelItem => item.Laskutusosoite)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Sukunimi)
+                    @Html.DisplayFor(modelItem => item.Laskutuspostinumero)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Osoite)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Postinumero)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Postitoimipaikka)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Puhelin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sähköposti)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Laskutusnimi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutusosoite)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutuspostinumero)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
-                    </td>*@
+                    @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
+                </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |*@
                 @*<button>@Html.ActionLink("Asiakastiedot", "Index", "Asiakas")</button>*@
                 <button>@Html.ActionLink("Asiakastiedot", "Details", new { id = item.Asiakasnumero })</button>
                 @*@Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })*@
             </td>
-            </tr>
-        }
+        </tr>
+    }
 
-    </table>
+</table>
