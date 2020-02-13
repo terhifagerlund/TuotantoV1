@@ -41,7 +41,10 @@ namespace TuotantoV1.Models
         public string Laskutuspostinumero { get; set; }
         public string Laskutuspostitoimipaikka { get; set; }
         public string Nimi { get; set; }
-
+        public string Asiakas
+        {
+            get { return Etunimi + " " + Sukunimi; }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiakasluokittelu> Asiakasluokittelu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
