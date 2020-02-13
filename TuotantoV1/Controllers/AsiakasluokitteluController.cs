@@ -15,10 +15,28 @@ namespace TuotantoV1.Controllers
         private tuotantoEntities db = new tuotantoEntities();
 
         // GET: Asiakasluokittelu
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var asiakasluokittelu = db.Asiakasluokittelu.Include(a => a.Asiakkaanperustiedot);
-            return View(asiakasluokittelu.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var seniorit = from s in db.Asiakasluokittelu
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                seniorit = seniorit.Where(s => s.Asiakkaanperustiedot.Sukunimi.Contains(searchString)
+                                       || s.Asiakkaanperustiedot.Etunimi.Contains(searchString)
+                                       || s.Asiakkaanperustiedot.Asiakasnumero.ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
+                    break;
+                default:
+                    seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Etunimi);
+                    seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Asiakasnumero);
+                    break;
+            }
+            return View(seniorit.ToList());
         }
 
         // GET: Asiakasluokittelu/Details/5
@@ -54,10 +72,10 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakasluokittelu.Add(asiakasluokittelu);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Asiakastapahtumat");
+                return RedirectToAction("Create", "Asiakasluokittelu");
             }
 
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero); 
             return View(asiakasluokittelu);
         }
 
@@ -73,7 +91,7 @@ namespace TuotantoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot,"Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
