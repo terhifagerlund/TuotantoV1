@@ -57,9 +57,26 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu/Create
         public ActionResult Create()
         {
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakasluokittelu);
+            List<SelectListItem> Asiakas = new List<SelectListItem>();
+            foreach (var Asiakkas in multihaku.ToList())
+            {
+                Asiakas.Add(new SelectListItem
+                {
+                    Value = Asiakkas.Asiakasnumero.ToString(),
+                    Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakas
+                });
+            }
+
+
+
+            ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text");
             return View();
         }
+        //{
+        //    ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
+        //    return View();
+        //}
 
         // POST: Asiakasluokittelu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -74,14 +91,26 @@ namespace TuotantoV1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Create", "Asiakasluokittelu");
             }
-
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero); 
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
+        //}
+        //ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero); 
+        //    return View(asiakasluokittelu);
         }
 
         // GET: Asiakasluokittelu/Edit/5
         public ActionResult Edit(int? id)
         {
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakasluokittelu);
+            List<SelectListItem> Asiakas = new List<SelectListItem>();
+            foreach (var Asiakkas in multihaku.ToList())
+            {
+                Asiakas.Add(new SelectListItem
+                {
+                    Value = Asiakkas.Asiakasnumero.ToString(),
+                    Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakas
+                });
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -91,7 +120,7 @@ namespace TuotantoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot,"Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot,"Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
