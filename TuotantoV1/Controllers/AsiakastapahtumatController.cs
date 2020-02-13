@@ -15,10 +15,28 @@ namespace TuotantoV1.Controllers
         private tuotantoEntities db = new tuotantoEntities();
 
         // GET: Asiakastapahtumat
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var asiakastapahtumat = db.Asiakastapahtumat.Include(a => a.Asiakkaanperustiedot);
-            return View(asiakastapahtumat.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var seniorit = from s in db.Asiakastapahtumat
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                seniorit = seniorit.Where(s => s.Asiakkaanperustiedot.Sukunimi.Contains(searchString)
+                                       || s.Asiakkaanperustiedot.Etunimi.Contains(searchString)
+                                       || s.Asiakkaanperustiedot.Asiakasnumero.ToString().Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
+                    break;
+                default:
+                    seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Etunimi);
+                    seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Asiakasnumero);
+                    break;
+            }
+            return View(seniorit.ToList());
         }
 
         // GET: Asiakastapahtumat/Details/5
@@ -38,8 +56,23 @@ namespace TuotantoV1.Controllers
 
         // GET: Asiakastapahtumat/Create
         public ActionResult Create()
+        //{
+        //    ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
+        //    return View();
+        //}
         {
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat);
+            List<SelectListItem> Asiakas = new List<SelectListItem>();
+            foreach (var Asiakkas in multihaku.ToList())
+            {
+                Asiakas.Add(new SelectListItem
+                {
+                    Value = Asiakkas.Asiakasnumero.ToString(),
+                    Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakas
+                });
+            }
+
+            ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text");
             return View();
         }
 
@@ -48,7 +81,7 @@ namespace TuotantoV1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Tapahtumaid,Asiakasnumero,Päivämäärä,Yhteydenotto,Kuvaus,Ratkaisu")] Asiakastapahtumat asiakastapahtumat)
+        public ActionResult Create([Bind(Include = "Tapahtumaid,Asiakasnumero,Asiakas,Päivämäärä,Yhteydenotto,Kuvaus,Ratkaisu")] Asiakastapahtumat asiakastapahtumat)
         {
             if (ModelState.IsValid)
             {
@@ -57,24 +90,40 @@ namespace TuotantoV1.Controllers
                 return RedirectToAction("Index", "Etusivu");
             }
 
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakastapahtumat.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakastapahtumat.Asiakasnumero);
             return View(asiakastapahtumat);
         }
 
         // GET: Asiakastapahtumat/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+           
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var multihaku = db.Asiakastapahtumat.Include(k => k.Asiakkaanperustiedot);
+                List<SelectListItem> Asiakas = new List<SelectListItem>();
+                foreach (var Asiakkas in multihaku.ToList())
+                {
+                    Asiakas.Add(new SelectListItem
+                    {
+                        Value = Asiakkas.Asiakasnumero.ToString(),
+                        Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakkaanperustiedot.Asiakas
+                    });
+                }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id);
+                if (asiakastapahtumat == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text", asiakastapahtumat.Asiakasnumero);
+                return View(asiakastapahtumat);
             }
-            Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id);
-            if (asiakastapahtumat == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakastapahtumat.Asiakasnumero);
-            return View(asiakastapahtumat);
+            //ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakastapahtumat.Asiakasnumero);
+            //return View(asiakastapahtumat);
         }
 
         // POST: Asiakastapahtumat/Edit/5
@@ -90,7 +139,7 @@ namespace TuotantoV1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakastapahtumat.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakastapahtumat.Asiakasnumero);
             return View(asiakastapahtumat);
         }
 
