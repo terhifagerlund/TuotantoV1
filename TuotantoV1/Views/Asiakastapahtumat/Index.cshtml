@@ -3,16 +3,23 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Asiakastapahtumat</h2>
-
 <div>
     @Html.ActionLink("Takaisin", "Index", "Asiakasluokittelu")
 </div>
-<br />
+<br>
 <p>
     <button>@Html.ActionLink("Lisää uusi asiakastapahtuma", "Create")</button>
 </p>
+<br>
+@using (Html.BeginForm())
+{
+    <p>
+        <b>Hae asiakasta:</b> @Html.TextBox("SearchString")
+        <input type="submit" value="Hae" />&nbsp&nbsp<button>@Html.ActionLink("Näytä kaikki", "Index")</button>
+    </p>
+}
+<br>
 <table class="table">
     <tr>
         <th>
@@ -40,36 +47,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Asiakasnumero)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Sukunimi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Päivämäärä)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Yhteydenotto)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kuvaus)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Ratkaisu)
-    </td>
-    <td>
-        <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Tapahtumaid })</button>
-        @*@Html.ActionLink("Details", "Details", new { id=item.Tapahtumaid }) |*@
-        <button>@Html.ActionLink("Poista", "Delete", new { id = item.Tapahtumaid })</button>
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Asiakasnumero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Sukunimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaanperustiedot.Etunimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Päivämäärä)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yhteydenotto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kuvaus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ratkaisu)
+            </td>
+            <td>
+                <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Tapahtumaid })</button>
+                @*@Html.ActionLink("Details", "Details", new { id=item.Tapahtumaid }) |*@
+                <button>@Html.ActionLink("Poista", "Delete", new { id = item.Tapahtumaid })</button>
+            </td>
+        </tr>
+    }
 
 </table>
 
