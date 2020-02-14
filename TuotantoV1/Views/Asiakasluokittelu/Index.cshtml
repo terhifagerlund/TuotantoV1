@@ -3,27 +3,25 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Asiakasluokittelu</h2>
+<br>
 <p>
     @Html.ActionLink("Takaisin", "Index", "Etusivu")
 </p>
-
+<h2>Asiakasluokittelu</h2>
+<br>
 <p>
     <button>@Html.ActionLink("Lisää uusi asiakasluokittelu", "Create")</button>
 </p>
 <br>
 @using (Html.BeginForm())
 {
-<p>
-    <b>Hae asiakasta:</b> @Html.TextBox("SearchString")
-    <input type="submit" value="Hae" />&nbsp&nbsp<button>@Html.ActionLink("Näytä kaikki", "Index")</button>
-</p>
+    <p>
+        <b>Hae asiakasta:</b> @Html.TextBox("SearchString")
+        <input type="submit" value="Hae" />&nbsp&nbsp<button>@Html.ActionLink("Näytä kaikki", "Index")</button>
+    </p>
 }
-<br>
-<br>
-<br>
 
+<br>
 <table class="table">
     <tr>
         <th>
@@ -101,8 +99,7 @@
             </td>
             <td>
                 <button>@Html.ActionLink("Muokkaa", "Edit", new { id = item.Luokitteluid })</button>
-                @*@Html.ActionLink("Details", "Details", new { id = item.Luokitteluid }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Luokitteluid })*@
+                <button>@Html.ActionLink("Poista", "Delete", new { id = item.Luokitteluid })</button>
             </td>
         </tr>
     }

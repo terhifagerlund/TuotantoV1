@@ -25,14 +25,6 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Asiakkaanperustiedot.Asiakasnumero, "Asiakas", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Asiakkaanperustiedot.Asiakas)
-            @Html.ValidationMessageFor(model => model.Asiakkaanperustiedot.Asiakas, "", new { @class = "text-danger" })          
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.Eläkeläisalennus, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
