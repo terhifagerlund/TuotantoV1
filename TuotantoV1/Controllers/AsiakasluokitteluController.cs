@@ -36,8 +36,9 @@ namespace TuotantoV1.Controllers
                     seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Asiakasnumero);
                     break;
             }
+
             return View(seniorit.ToList());
-        }
+    }
 
         // GET: Asiakasluokittelu/Details/5
         public ActionResult Details(int? id)
@@ -89,13 +90,10 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakasluokittelu.Add(asiakasluokittelu);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Asiakasluokittelu");
+                return RedirectToAction("Index" /*"Create", "Asiakastapahtuma"*/);
             }
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
-        //}
-        //ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero); 
-        //    return View(asiakasluokittelu);
         }
 
         // GET: Asiakasluokittelu/Edit/5
@@ -120,7 +118,7 @@ namespace TuotantoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot,"Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
@@ -131,13 +129,14 @@ namespace TuotantoV1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Luokitteluid,Asiakasnumero,Eläkeläisalennus,Tv,Pöytäkone,Kannettava,Matkapuhelin,Tabletti,Mokkula,Wlan")] Asiakasluokittelu asiakasluokittelu)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)   
             {
                 db.Entry(asiakasluokittelu).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); 
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
+        
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
