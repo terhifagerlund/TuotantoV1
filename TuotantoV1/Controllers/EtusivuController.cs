@@ -18,17 +18,27 @@ namespace TuotantoV1.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var seniorit = from s in db.Asiakkaanperustiedot
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 seniorit = seniorit.Where(s => s.Sukunimi.Contains(searchString)
-                                       || s.Etunimi.Contains(searchString));
+                                       || s.Etunimi.Contains(searchString)
+                                       //|| s.Asiakas.Contains(searchString)
+                                       //|| s.Asiakasnumero.ToString().Contains(searchString)
+                                       || s.Postinumero.Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
                     seniorit = seniorit.OrderByDescending(s => s.Sukunimi);
+                    break;
+                case "Date":
+                    seniorit = seniorit.OrderBy(s => s.Asiakasnumero);
+                    break;
+                case "date_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Asiakasnumero);
                     break;
                 default:
                     seniorit = seniorit.OrderBy(s => s.Sukunimi);
