@@ -17,7 +17,7 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : "";
             var seniorit = from s in db.Asiakasluokittelu
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -28,7 +28,7 @@ namespace TuotantoV1.Controllers
             }
             switch (sortOrder)
             {
-                case "name_desc":
+                case "haku":
                     seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
                     break;
                 default:
@@ -38,7 +38,7 @@ namespace TuotantoV1.Controllers
             }
 
             return View(seniorit.ToList());
-    }
+        }
 
         // GET: Asiakasluokittelu/Details/5
         public ActionResult Details(int? id)
@@ -68,16 +68,9 @@ namespace TuotantoV1.Controllers
                     Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakas
                 });
             }
-
-
-
             ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text");
             return View();
         }
-        //{
-        //    ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
-        //    return View();
-        //}
 
         // POST: Asiakasluokittelu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -90,7 +83,7 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakasluokittelu.Add(asiakasluokittelu);
                 db.SaveChanges();
-                return RedirectToAction("Index" /*"Create", "Asiakastapahtuma"*/);
+                return RedirectToAction("Create", "Asiakastapahtumat");
             }
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
