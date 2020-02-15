@@ -17,7 +17,7 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : "";
             var seniorit = from s in db.Asiakasluokittelu
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -28,7 +28,7 @@ namespace TuotantoV1.Controllers
             }
             switch (sortOrder)
             {
-                case "name_desc":
+                case "haku":
                     seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
                     break;
                 default:
@@ -36,6 +36,7 @@ namespace TuotantoV1.Controllers
                     seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Asiakasnumero);
                     break;
             }
+
             return View(seniorit.ToList());
         }
 
@@ -67,16 +68,9 @@ namespace TuotantoV1.Controllers
                     Text = Asiakkas.Asiakasnumero.ToString() + " - " + Asiakkas.Asiakas
                 });
             }
-
-
-
             ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text");
             return View();
         }
-        //{
-        //    ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
-        //    return View();
-        //}
 
         // POST: Asiakasluokittelu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -89,13 +83,10 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakasluokittelu.Add(asiakasluokittelu);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Asiakasluokittelu");
+                return RedirectToAction("Create", "Asiakastapahtumat");
             }
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
-        //}
-        //ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero); 
-        //    return View(asiakasluokittelu);
         }
 
         // GET: Asiakasluokittelu/Edit/5
@@ -120,7 +111,7 @@ namespace TuotantoV1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot,"Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
+            ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
@@ -131,13 +122,14 @@ namespace TuotantoV1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Luokitteluid,Asiakasnumero,Eläkeläisalennus,Tv,Pöytäkone,Kannettava,Matkapuhelin,Tabletti,Mokkula,Wlan")] Asiakasluokittelu asiakasluokittelu)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)   
             {
                 db.Entry(asiakasluokittelu).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); 
             }
-            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakasluokittelu.Asiakasnumero);
+        
+            ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakasluokittelu.Asiakasnumero);
             return View(asiakasluokittelu);
         }
 
