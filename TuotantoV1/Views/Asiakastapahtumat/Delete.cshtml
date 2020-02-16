@@ -18,19 +18,19 @@
         <dd>
             @Html.DisplayFor(model => model.Asiakkaanperustiedot.Asiakasnumero)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Etunimi)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Asiakkaanperustiedot.Etunimi)
-        </dd>
+        </dd>*@
         <dt>
-            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Sukunimi)
+            @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Asiakas)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Asiakkaanperustiedot.Sukunimi)
+            @Html.DisplayFor(model => model.Asiakkaanperustiedot.Asiakas)
         </dd>
 
         <dt>
@@ -73,7 +73,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Poista" class="btn btn-default" />
+                <input type="submit" value="Poista" class="btn btn-default" onclick="return confirm('Tiedot on poistettu')" />
             </div>
         </div>
      }
