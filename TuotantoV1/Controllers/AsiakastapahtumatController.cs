@@ -56,10 +56,7 @@ namespace TuotantoV1.Controllers
 
         // GET: Asiakastapahtumat/Create
         public ActionResult Create()
-        //{
-        //    ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero");
-        //    return View();
-        //}
+        
         {
             var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat);
             List<SelectListItem> Asiakas = new List<SelectListItem>();
@@ -87,7 +84,7 @@ namespace TuotantoV1.Controllers
             {
                 db.Asiakastapahtumat.Add(asiakastapahtumat);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Etusivu");
+                return RedirectToAction("Index");
             }
 
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakastapahtumat.Asiakasnumero);
