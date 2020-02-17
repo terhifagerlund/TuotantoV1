@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+    <style>
 
+        body {
+            background-image: url('../../Images/apple-background-desk-electronics-399161.jpg');
+            height: 640px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 <h2>Kirjaudu sisään</h2>
 
 @using (Html.BeginForm("Authorize", "Logins", FormMethod.Post))
