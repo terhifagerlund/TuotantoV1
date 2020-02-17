@@ -39,9 +39,9 @@
                 @Html.ValidationMessageFor(model => model.Salasana, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*<label class="text-danger">
+        <label class="text-danger">
                 @Html.DisplayFor(model => model.LoginErrorMessage)
-            </label>*@
+            </label>
 
 
 
@@ -52,35 +52,3 @@
         </div>
     </div>
 }
-
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Käyttäjätunnus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salasana)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Käyttäjätunnus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salasana)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Loginid }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Loginid }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Loginid })
-            </td>
-        </tr>
-    }
-
-    </table>*@

@@ -20,25 +20,26 @@ namespace TuotantoV1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Authorize(Logins LoginsModel)
+        public ActionResult Authorize(Logins LoginModel)
         {
             tuotantoEntities db = new tuotantoEntities();
 
-            var LoggedUser = db.Logins.SingleOrDefault(x => x.Käyttäjätunnus == LoginsModel.Käyttäjätunnus && x.Salasana == LoginsModel.Salasana);
+            var LoggedUser = db.Logins.SingleOrDefault(x => x.Käyttäjätunnus == LoginModel.Käyttäjätunnus && x.Salasana == LoginModel.Salasana);
             if (LoggedUser != null)
             {
-                ViewBag.LoginMessage = "Successfull login";
-                ViewBag.LoginId = LoggedUser.Loginid;
-                Session["UserName"] = LoggedUser.Käyttäjätunnus;
-                Session["LoginId"] = LoggedUser.Loginid;
+                ViewBag.LoginMessage = "Kirjautuminen onnistui";
+                //ViewBag.LoginId = LoggedUser.Loginid;
+                ViewBag.LoggedStatus = "In";
+                Session["Käyttäjätunnus"] = LoggedUser.Käyttäjätunnus;
+                //Session["LoginId"] = LoggedUser.Loginid;
                 return RedirectToAction("Index", "Etusivu");
             }
             else
             {
-                ViewBag.LoginMessage = "Login unsuccessfull";
+                ViewBag.LoginMessage = "Kirjautuminen epäonnistui";
                 ViewBag.LoggedStatus = "Out";
-                //LoginsModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
-                return View("Logins", LoginsModel);
+                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
+                return View("Logins", LoginModel);
             }
         }
         public ActionResult LogOut()

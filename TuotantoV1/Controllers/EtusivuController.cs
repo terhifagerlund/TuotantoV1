@@ -17,6 +17,15 @@ namespace TuotantoV1.Controllers
         // GET: Etusivu
         public ActionResult Index(string sortOrder, string searchString)
         {
+            if (Session["Käyttäjätunnus"] == null)
+            {
+                return RedirectToAction("Logins", "home");
+            }
+            else
+            {
+
+           
+           
             ViewBag.SukunimiNameSortParm = String.IsNullOrEmpty(sortOrder) ? "SukunimiName_desc" : "";
             ViewBag.AsiakasnumeroNameSortParm = sortOrder == "AsiakasnumeroName" ? "AsiakasnumeroName_desc" : "AsiakasnumeroName";
             ViewBag.PostitoimipaikkaNameSortParm = sortOrder == "PostitoimipaikkaName" ? "PostitoimipaikkaName_desc" : "PostitoimipaikkaName";
@@ -57,6 +66,7 @@ namespace TuotantoV1.Controllers
                     break;
             }
             return View(seniorit.ToList());
+            }
         }
         // GET: Etusivu/Details/5
         public ActionResult Details(int? id)
