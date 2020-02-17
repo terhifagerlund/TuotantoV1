@@ -17,28 +17,40 @@ namespace TuotantoV1.Controllers
         // GET: Etusivu
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.SukunimiNameSortParm = String.IsNullOrEmpty(sortOrder) ? "SukunimiName_desc" : "";
+            ViewBag.AsiakasnumeroNameSortParm = sortOrder == "AsiakasnumeroName" ? "AsiakasnumeroName_desc" : "AsiakasnumeroName";
+            ViewBag.PostitoimipaikkaNameSortParm = sortOrder == "PostitoimipaikkaName" ? "PostitoimipaikkaName_desc" : "PostitoimipaikkaName";
+            ViewBag.PostinumeroNameSortParm = sortOrder == "PostinumeroName" ? "PostinumeroName_desc" : "PostinumeroName";
             var seniorit = from s in db.Asiakkaanperustiedot
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 seniorit = seniorit.Where(s => s.Sukunimi.Contains(searchString)
                                        || s.Etunimi.Contains(searchString)
-                                       //|| s.Asiakas.Contains(searchString)
-                                       //|| s.Asiakasnumero.ToString().Contains(searchString)
-                                       || s.Postinumero.Contains(searchString));
+                                       || s.Asiakasnumero.ToString().Contains(searchString));
             }
             switch (sortOrder)
             {
-                case "name_desc":
+                case "SukunimiName_desc":
                     seniorit = seniorit.OrderByDescending(s => s.Sukunimi);
                     break;
-                case "Date":
+                case "PostitoimipaikkaName":
+                    seniorit = seniorit.OrderBy(s => s.Postitoimipaikka);
+                    break;
+                case "PostitoimipaikkaName_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Postitoimipaikka);
+                    break;
+                case "AsiakasnumeroName":
                     seniorit = seniorit.OrderBy(s => s.Asiakasnumero);
                     break;
-                case "date_desc":
+                case "AsiakasnumeroName_desc":
                     seniorit = seniorit.OrderByDescending(s => s.Asiakasnumero);
+                    break;
+                case "PostinumeroName":
+                    seniorit = seniorit.OrderBy(s => s.Postinumero);
+                    break;
+                case "PostinumeroName_desc":
+                    seniorit = seniorit.OrderByDescending(s => s.Postinumero);
                     break;
                 default:
                     seniorit = seniorit.OrderBy(s => s.Sukunimi);
