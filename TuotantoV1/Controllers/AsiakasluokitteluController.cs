@@ -17,7 +17,13 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : "";
+            if (Session["Käyttäjätunnus"] == null)
+            {
+                return RedirectToAction("Index", "Logins");
+            }
+            else
+            {
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : "";
             var seniorit = from s in db.Asiakasluokittelu
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -38,6 +44,7 @@ namespace TuotantoV1.Controllers
             }
 
             return View(seniorit.ToList());
+            }
         }
 
         // GET: Asiakasluokittelu/Details/5

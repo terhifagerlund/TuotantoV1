@@ -28,9 +28,13 @@ namespace TuotantoV1.Controllers
             if (LoggedUser != null)
             {
                 ViewBag.LoginMessage = "Kirjautuminen onnistui";
+                Logins käyttäjä = new Logins();
+                int Loginid = LoggedUser.Loginid;
+                käyttäjä = db.Logins.Where(o => o.Loginid == Loginid).FirstOrDefault();
                 //ViewBag.LoginId = LoggedUser.Loginid;
                 ViewBag.LoggedStatus = "In";
                 Session["Käyttäjätunnus"] = LoggedUser.Käyttäjätunnus;
+                Session["KirjautunutKayttajaNimi"] = käyttäjä.Käyttäjätunnus;
                 //Session["LoginId"] = LoggedUser.Loginid;
                 return RedirectToAction("Index", "Etusivu");
             }
@@ -39,7 +43,7 @@ namespace TuotantoV1.Controllers
                 ViewBag.LoginMessage = "Kirjautuminen epäonnistui";
                 ViewBag.LoggedStatus = "Out";
                 LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
-                return View("Logins", LoginModel);
+                return View("Index", LoginModel );
             }
         }
         public ActionResult LogOut()

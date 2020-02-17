@@ -17,7 +17,13 @@ namespace TuotantoV1.Controllers
         // GET: Asiakastapahtumat
         public ActionResult Index(string sortOrder, string searchString)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (Session["Käyttäjätunnus"] == null)
+            {
+                return RedirectToAction("Index", "Logins");
+            }
+            else
+            {
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var seniorit = from s in db.Asiakastapahtumat
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -37,6 +43,7 @@ namespace TuotantoV1.Controllers
                     break;
             }
             return View(seniorit.ToList());
+            }
         }
 
         // GET: Asiakastapahtumat/Details/5
