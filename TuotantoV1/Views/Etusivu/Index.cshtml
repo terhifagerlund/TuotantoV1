@@ -23,11 +23,13 @@
     <table class="table table-hover">
         <tr>
             <th>
-                <span style="cursor:pointer"></span> @Html.ActionLink("Asiakasnumero","Index", new { sortOrder = ViewBag.DateSortParm })
+                <span style="cursor:pointer"></span>
+                @Html.ActionLink("Asiakasnumero","Index", new { sortOrder = ViewBag.AsiakasnumeroNameSortParm })
                 @*@Html.DisplayNameFor(model => model.Asiakasnumero)*@
             </th>
             <th>
-                <span style="cursor:pointer"></span> @Html.ActionLink("Sukunimi", "Index", new { sortOrder = ViewBag.NameSortParm })
+                <span style="cursor:pointer"></span>
+                @Html.ActionLink("Sukunimi", "Index", new { sortOrder = ViewBag.SukunimiNameSortParm })
                 @*@Html.DisplayNameFor(model => model.Sukunimi)*@
             </th>
             <th>
@@ -37,10 +39,14 @@
                 @Html.DisplayNameFor(model => model.Osoite)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Postinumero)
+                <span style="cursor:pointer"></span>
+                @Html.ActionLink("Postinumero", "Index", new { sortOrder = ViewBag.PostinumeroNameSortParm })
+                @*@Html.DisplayNameFor(model => model.Postinumero)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Postitoimipaikka)
+                <span style="cursor:pointer"></span>
+                @Html.ActionLink("Postitoimipaikka", "Index", new { sortOrder = ViewBag.PostitoimipaikkaNameSortParm })
+                @*@Html.DisplayNameFor(model => model.Postitoimipaikka)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Puhelin)
@@ -103,10 +109,7 @@
                         @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
                     </td>*@
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Asiakasnumero }) |*@
-                @*<button>@Html.ActionLink("Asiakastiedot", "Index", "Asiakas")</button>*@
                 <button>@Html.ActionLink("Asiakastiedot", "Details", new { id = item.Asiakasnumero })</button>
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.Asiakasnumero })*@
             </td>
             </tr>
         }
