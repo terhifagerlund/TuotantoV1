@@ -19,7 +19,7 @@ namespace TuotantoV1.Controllers
         {
             if (Session["Käyttäjätunnus"] == null)
             {
-                return RedirectToAction("Logins", "home");
+                return RedirectToAction("Index", "Logins");
             }
             else
             {

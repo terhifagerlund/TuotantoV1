@@ -32,7 +32,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>@(Session["KirjautunutKayttajaNimi"] == null ? "Et ole kirjautunut sisään" : Session["KirjautunutKayttajaNimi"])</p>
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
         </footer>
     </div>
 
