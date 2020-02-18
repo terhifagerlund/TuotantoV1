@@ -16,15 +16,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Kirjaudu sisään", "Index", "Logins", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Kirjaudu sisään", "Index", "Logins")</li>
                     <li>@Html.ActionLink("Etusivu", "Index", "Etusivu")</li>
                     <li>@Html.ActionLink("Asiakasluokittelu", "Index", "Asiakasluokittelu")</li>
                     <li>@Html.ActionLink("Asiakastapahtumat", "Index", "Asiakastapahtumat")</li>
+                    <li>@Html.ActionLink("Kirjaudu ulos", "LogOut", "Logins")</li>
                 </ul>
-                @Html.ActionLink("Kirjaudu ulos", "LogOut", "Logins", new { area = "" }, new { @class = "navbar-brand" })
             </div>
         </div>
     </div>
