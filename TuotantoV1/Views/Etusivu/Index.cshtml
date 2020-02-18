@@ -30,12 +30,10 @@
             <th>
                 <span style="cursor:pointer"></span>
                 @Html.ActionLink("Asiakasnumero","Index", new { sortOrder = ViewBag.AsiakasnumeroNameSortParm })
-                @*@Html.DisplayNameFor(model => model.Asiakasnumero)*@
             </th>
             <th>
                 <span style="cursor:pointer"></span>
                 @Html.ActionLink("Sukunimi", "Index", new { sortOrder = ViewBag.SukunimiNameSortParm })
-                @*@Html.DisplayNameFor(model => model.Sukunimi)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Etunimi)
@@ -46,12 +44,10 @@
             <th>
                 <span style="cursor:pointer"></span>
                 @Html.ActionLink("Postinumero", "Index", new { sortOrder = ViewBag.PostinumeroNameSortParm })
-                @*@Html.DisplayNameFor(model => model.Postinumero)*@
             </th>
             <th>
                 <span style="cursor:pointer"></span>
                 @Html.ActionLink("Postitoimipaikka", "Index", new { sortOrder = ViewBag.PostitoimipaikkaNameSortParm })
-                @*@Html.DisplayNameFor(model => model.Postitoimipaikka)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Puhelin)
@@ -59,18 +55,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Sähköposti)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Laskutusnimi)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutusosoite)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutuspostinumero)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Laskutuspostitoimipaikka)
-                </th>*@
             <th></th>
         </tr>
 
@@ -101,18 +85,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Sähköposti)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Laskutusnimi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutusosoite)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutuspostinumero)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laskutuspostitoimipaikka)
-                    </td>*@
             <td>
                 <button>@Html.ActionLink("Asiakastiedot", "Details", new { id = item.Asiakasnumero })</button>
             </td>
