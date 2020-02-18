@@ -157,10 +157,20 @@ namespace TuotantoV1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Asiakkaanperustiedot asiakkaanperustiedot = db.Asiakkaanperustiedot.Find(id);
-            db.Asiakkaanperustiedot.Remove(asiakkaanperustiedot);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Asiakkaanperustiedot asiakkaanperustiedot = db.Asiakkaanperustiedot.Find(id);
+                db.Asiakkaanperustiedot.Remove(asiakkaanperustiedot);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                string message = string.Format("Tapahtui virhe! Poista asiakkaalta asiakasluokittelu ja asiakastapahtuma ennen asiakstietojen poistamista.", ex.Message);
+                ModelState.AddModelError(string.Empty, message);
+            }
+            return View();
+            
         }
 
         protected override void Dispose(bool disposing)
