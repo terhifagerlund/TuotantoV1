@@ -15,7 +15,7 @@
 </p>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+@*<style>
     .alert {
         padding: 20px;
         background-color: #f44336;
@@ -41,109 +41,111 @@
     <div class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <strong>HUOMIO!</strong> Poista asiakkaan asiakasluokittelu ja asiakastapahtuma ennen poistamista.
-    </div>
+    </div>*@
 
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Etunimi)
-            </dt>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Etunimi)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Etunimi)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Etunimi)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Sukunimi)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sukunimi)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Sukunimi)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Sukunimi)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Osoite)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Osoite)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Osoite)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Osoite)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Postinumero)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Postinumero)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Postinumero)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Postitoimipaikka)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Postitoimipaikka)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Postitoimipaikka)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Postitoimipaikka)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Puhelin)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Puhelin)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Puhelin)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Puhelin)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Sähköposti)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sähköposti)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Sähköposti)
-            </dd>
-        </dl>
-        <h4><b>Poikkeava laskutustieto:</b></h4>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nimi)
-            </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sähköposti)
+        </dd>
+    </dl>
+    <h4><b>Poikkeava laskutustieto:</b></h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nimi)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Laskutusnimi)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Laskutusnimi)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Osoite)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Osoite)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Laskutusosoite)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Laskutusosoite)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Postinumero)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Laskutuspostinumero)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Laskutuspostinumero)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Postitoimipaikka)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Postitoimipaikka)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Laskutuspostitoimipaikka)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Laskutuspostitoimipaikka)
+        </dd>
 
-        </dl>
+    </dl>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Poista" class="btn btn-default" onclick="return confirm('Tiedot on poistettu')" />
-            </div>
-        }
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Poista" class="btn btn-default" onclick="return confirm('Tiedot on poistettu')" />
+        </div>
+
+        @Html.Raw(HttpUtility.HtmlDecode((Html.ValidationSummary(false, "", new { @class = "exception" })).ToHtmlString()))
+    }
+</div>
