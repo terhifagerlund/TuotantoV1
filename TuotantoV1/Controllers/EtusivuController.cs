@@ -166,7 +166,7 @@ namespace TuotantoV1.Controllers
             }
             catch (Exception ex)
             {
-                string message = string.Format("Tapahtui virhe! Poista asiakkaalta asiakasluokittelu ja asiakastapahtuma ennen asiakstietojen poistamista.", ex.Message);
+                string message = string.Format("Tapahtui virhe! Poista asiakkaalta asiakasluokittelu ja asiakastapahtuma ennen asiakastietojen poistamista.", ex.Message);
                 ModelState.AddModelError(string.Empty, message);
             }
             return View();
