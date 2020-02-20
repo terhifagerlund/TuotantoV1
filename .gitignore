@@ -260,6 +260,7 @@ Web.config
 
 # TuotantoV1.Tests
 TuotantoV1.Tests
+
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
