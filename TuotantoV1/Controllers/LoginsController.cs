@@ -23,34 +23,27 @@ namespace TuotantoV1.Controllers
         public ActionResult Authorize(Logins LoginModel)
         {
             tuotantoEntities db = new tuotantoEntities();
-
+            //Tarkistaa tietokannasta käyttäjätunnuksen ja salasanan
             var LoggedUser = db.Logins.SingleOrDefault(x => x.Käyttäjätunnus == LoginModel.Käyttäjätunnus && x.Salasana == LoginModel.Salasana);
             if (LoggedUser != null)
             {
-                ViewBag.LoginMessage = "Kirjautuminen onnistui";
                 Logins käyttäjä = new Logins();
                 int Loginid = LoggedUser.Loginid;
-                käyttäjä = db.Logins.Where(o => o.Loginid == Loginid).FirstOrDefault();
-                //ViewBag.LoginId = LoggedUser.Loginid;
-                ViewBag.LoggedStatus = "In";
-                Session["Käyttäjätunnus"] = LoggedUser.Käyttäjätunnus;
-                Session["KirjautunutKayttajaNimi"] = käyttäjä.Käyttäjätunnus;
-                //Session["LoginId"] = LoggedUser.Loginid;
-                return RedirectToAction("Index", "Etusivu");
+                käyttäjä = db.Logins.Where(o => o.Loginid == Loginid).FirstOrDefault(); //Käyttäjätunnus = tietokannasta löytyvä käyttäjätunnus
+                Session["Käyttäjätunnus"] = LoggedUser.Käyttäjätunnus; 
+                Session["KirjautunutKayttajaNimi"] = käyttäjä.Käyttäjätunnus; //Käyttäjätunnus näkyy sivun alareunassa(lisättiin layout-sivulle)
+                return RedirectToAction("Index", "Etusivu"); //Onnistuneen kirjautumisen jälkeen etusivulle
             }
             else
             {
-                ViewBag.LoginMessage = "Kirjautuminen epäonnistui";
-                ViewBag.LoggedStatus = "Out";
-                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana.";
+                LoginModel.LoginErrorMessage = "Tuntematon käyttäjätunnus tai salasana."; //Tämä lisättiin index-sivulle
                 return View("Index", LoginModel );
             }
         }
         public ActionResult LogOut()
         {
             Session.Abandon();
-            ViewBag.LoggedStatus = "Out";
-            return RedirectToAction("Index", "Logins"); //Uloskirjautumisen jälkeen pääsivulle
+            return RedirectToAction("Index", "Logins"); //Uloskirjautumisen jälkeen kirjautumissivulle
         }
         protected override void Dispose(bool disposing)
         {
