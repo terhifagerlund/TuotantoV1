@@ -28,12 +28,14 @@ namespace TuotantoV1.Controllers
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
+                    //Haetaan halutut tiedot tietokannasta
                 seniorit = seniorit.Where(s => s.Asiakkaanperustiedot.Sukunimi.Contains(searchString)
                                        || s.Asiakkaanperustiedot.Etunimi.Contains(searchString)
                                        || s.Asiakkaanperustiedot.Asiakasnumero.ToString().Contains(searchString));
             }
             switch (sortOrder)
             {
+                    //Tiedot tuodaan näkymään
                 case "haku":
                     seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
                     break;
