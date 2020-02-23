@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TuotantoV1.Models;
 
@@ -17,13 +16,14 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu
         public ActionResult Index(string sortOrder, string searchString)
         {
-            if (Session["Käyttäjätunnus"] == null)
+            if (Session["Käyttäjätunnus"] == null) //Tarkistetaan onko käyttäjätunnus syötetty
             {
                 return RedirectToAction("Index", "Logins");
             }
             else
             {
-                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : "";
+                //Luodaan Asiakasluokittelun hakutoiminto, asiakasta voidaan hakea sukunimen, etunimen ja asiakasnumeron perusteella
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "haku" : ""; 
             var seniorit = from s in db.Asiakasluokittelu
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -65,7 +65,8 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu/Create
         public ActionResult Create()
         {
-            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakasluokittelu);
+            //Luodaan multihaku niminen lista dropdownia varten. Dropdown näyttää asiakasnumeron ja asiakkaan etu- ja sukunimen
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakasluokittelu); 
             List<SelectListItem> Asiakas = new List<SelectListItem>();
             foreach (var Asiakkas in multihaku.ToList())
             {
@@ -80,8 +81,6 @@ namespace TuotantoV1.Controllers
         }
 
         // POST: Asiakasluokittelu/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Luokitteluid,Asiakasnumero,Eläkeläisalennus,Tv,Pöytäkone,Kannettava,Matkapuhelin,Tabletti,Mokkula,Wlan")] Asiakasluokittelu asiakasluokittelu)
@@ -99,6 +98,7 @@ namespace TuotantoV1.Controllers
         // GET: Asiakasluokittelu/Edit/5
         public ActionResult Edit(int? id)
         {
+            //Luodaan multihaku niminen lista dropdownia varten. Dropdown näyttää asiakasnumeron ja asiakkaan etu- ja sukunimen
             var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakasluokittelu);
             List<SelectListItem> Asiakas = new List<SelectListItem>();
             foreach (var Asiakkas in multihaku.ToList())
@@ -123,8 +123,6 @@ namespace TuotantoV1.Controllers
         }
 
         // POST: Asiakasluokittelu/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Luokitteluid,Asiakasnumero,Eläkeläisalennus,Tv,Pöytäkone,Kannettava,Matkapuhelin,Tabletti,Mokkula,Wlan")] Asiakasluokittelu asiakasluokittelu)
