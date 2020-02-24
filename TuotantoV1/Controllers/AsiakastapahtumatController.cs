@@ -19,24 +19,24 @@ namespace TuotantoV1.Controllers
         {
             if (Session["Käyttäjätunnus"] == null)
             {
-                return RedirectToAction("Index", "Logins");
+                return RedirectToAction("Index", "Logins"); //Palauttaa kirjautumisnäkymän, jos kirjatuminen ei onnistunut
             }
             else
             {
-                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : ""; //Hakukenttä
             var seniorit = from s in db.Asiakastapahtumat
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                seniorit = seniorit.Where(s => s.Asiakkaanperustiedot.Sukunimi.Contains(searchString)
+                seniorit = seniorit.Where(s => s.Asiakkaanperustiedot.Sukunimi.Contains(searchString) //Määritellään mistä ja mitä tietoa haetaan
                                        || s.Asiakkaanperustiedot.Etunimi.Contains(searchString)
                                        || s.Asiakkaanperustiedot.Asiakasnumero.ToString().Contains(searchString));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi);
-                    break;
+                    seniorit = seniorit.OrderByDescending(s => s.Asiakkaanperustiedot.Sukunimi); //Mitä tietoja näytetään
+                        break;
                 default:
                     seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Etunimi);
                     seniorit = seniorit.OrderBy(s => s.Asiakkaanperustiedot.Asiakasnumero);
@@ -65,7 +65,7 @@ namespace TuotantoV1.Controllers
         public ActionResult Create()
         
         {
-            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat);
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat); // Lisätään dropdowniin asiakasnumeron lisäksi nimi
             List<SelectListItem> Asiakas = new List<SelectListItem>();
             foreach (var Asiakkas in multihaku.ToList())
             {
@@ -81,17 +81,15 @@ namespace TuotantoV1.Controllers
         }
 
         // POST: Asiakastapahtumat/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Tapahtumaid,Asiakasnumero,Asiakas,Päivämäärä,Yhteydenotto,Kuvaus,Ratkaisu")] Asiakastapahtumat asiakastapahtumat)
         {
             if (ModelState.IsValid)
             {
-                db.Asiakastapahtumat.Add(asiakastapahtumat);
+                db.Asiakastapahtumat.Add(asiakastapahtumat); //Lisää asiakastapahtuman
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); //Palaa Indexiin
             }
 
             ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakas", asiakastapahtumat.Asiakasnumero);
@@ -101,9 +99,8 @@ namespace TuotantoV1.Controllers
         // GET: Asiakastapahtumat/Edit/5
         public ActionResult Edit(int? id)
         {
-           
             {
-                var multihaku = db.Asiakastapahtumat.Include(k => k.Asiakkaanperustiedot);
+                var multihaku = db.Asiakastapahtumat.Include(k => k.Asiakkaanperustiedot); //Lisätään dropdowniin asiakasnumeron lisäksi nimi
                 List<SelectListItem> Asiakas = new List<SelectListItem>();
                 foreach (var Asiakkas in multihaku.ToList())
                 {
@@ -117,7 +114,7 @@ namespace TuotantoV1.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id);
+                Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id); 
                 if (asiakastapahtumat == null)
                 {
                     return HttpNotFound();
@@ -126,13 +123,9 @@ namespace TuotantoV1.Controllers
                 ViewBag.Asiakasnumero = new SelectList(Asiakas, "Value", "Text", asiakastapahtumat.Asiakasnumero);
                 return View(asiakastapahtumat);
             }
-            //ViewBag.Asiakasnumero = new SelectList(db.Asiakkaanperustiedot, "Asiakasnumero", "Asiakasnumero", asiakastapahtumat.Asiakasnumero);
-            //return View(asiakastapahtumat);
         }
 
         // POST: Asiakastapahtumat/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Tapahtumaid,Asiakasnumero,Päivämäärä,Yhteydenotto,Kuvaus,Ratkaisu")] Asiakastapahtumat asiakastapahtumat)
@@ -154,7 +147,7 @@ namespace TuotantoV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id);
+            Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id); //Hakee id:llä oikean asiakkaan
             if (asiakastapahtumat == null)
             {
                 return HttpNotFound();
@@ -167,10 +160,10 @@ namespace TuotantoV1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id);
-            db.Asiakastapahtumat.Remove(asiakastapahtumat);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Asiakastapahtumat asiakastapahtumat = db.Asiakastapahtumat.Find(id); //Hakee id:llä oikean asiakkaan
+            db.Asiakastapahtumat.Remove(asiakastapahtumat); //Poistaa asiakastapahtuman
+            db.SaveChanges(); //Tallentaa muutokset
+            return RedirectToAction("Index"); //Palaa Indexiin
         }
 
         protected override void Dispose(bool disposing)

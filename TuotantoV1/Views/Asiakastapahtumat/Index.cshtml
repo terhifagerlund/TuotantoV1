@@ -3,26 +3,29 @@
 @{
     ViewBag.Title = "Index";
 }
-    <style>
-        body {
-            background-color: #F8F8FF;
-        }
-    </style>
+<style>
+    body 
+    {
+        background-color: #F8F8FF;
+    }
+</style>
 <h2>Asiakastapahtumat</h2>
 <div>
     @Html.ActionLink("Takaisin", "Index", "Asiakasluokittelu")
 </div>
 <br>
 <br>
+
 @using (Html.BeginForm())
 {
-<p>
-    <b>Hae asiakasta:</b> @Html.TextBox("SearchString")
-    <input type="submit" value="Hae" />&nbsp&nbsp<button>@Html.ActionLink("Näytä kaikki", "Index")</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button>@Html.ActionLink("Lisää uusi asiakastapahtuma", "Create")</button>
-</p>
+    <p>
+        <b>Hae asiakasta:</b> @Html.TextBox("SearchString") @*//Hakukenttä*@
+        <input type="submit" value="Hae" />&nbsp&nbsp<button>@Html.ActionLink("Näytä kaikki", "Index")</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button>@Html.ActionLink("Lisää uusi asiakastapahtuma", "Create")</button>
+    </p>
 }
 <br>
+
 <table class="table table-hover">
     <tr>
         <th>
@@ -46,8 +49,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Ratkaisu)
         </th>
-
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
