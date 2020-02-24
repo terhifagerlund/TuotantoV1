@@ -65,7 +65,7 @@ namespace TuotantoV1.Controllers
         public ActionResult Create()
         
         {
-            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat); //Lisätään dropdowniin asiakasnumeron lisäksi nimi
+            var multihaku = db.Asiakkaanperustiedot.Include(k => k.Asiakastapahtumat); // Lisätään dropdowniin asiakasnumeron lisäksi nimi
             List<SelectListItem> Asiakas = new List<SelectListItem>();
             foreach (var Asiakkas in multihaku.ToList())
             {
