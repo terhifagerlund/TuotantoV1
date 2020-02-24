@@ -19,77 +19,60 @@
         <dt>
             @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Asiakasnumero)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Asiakkaanperustiedot.Asiakasnumero)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Asiakkaanperustiedot.Asiakas)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Asiakkaanperustiedot.Asiakas)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Eläkeläisalennus)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Eläkeläisalennus)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Tv)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Tv)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Pöytäkone)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Pöytäkone)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Kannettava)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Kannettava)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Matkapuhelin)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Matkapuhelin)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Tabletti)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Tabletti)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Mokkula)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Mokkula)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Wlan)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Wlan)
         </dd>
@@ -99,7 +82,6 @@
         @Html.AntiForgeryToken()
 
 <div class="form-actions no-color">
-    @*<input type="submit" value="Poista" class="btn btn-default" />*@
     <input type="submit" value="Poista" class="btn btn-default" onclick="return confirm('Tiedot on poistettu')" />
 </div>
     }
